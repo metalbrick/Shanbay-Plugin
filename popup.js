@@ -694,36 +694,14 @@ $(document).ready(function() {
 
 	$('#pronunciation').mouseenter(pronunceWord);
 
-	chrome.runtime.getBackgroundPage(function(backgroundPage) {
-		var words = backgroundPage.getSelected();
-		// $('#queryword').prop("placeholder", words);
-		
-		if (words && words.length > 0) {
-			$('#queryword').blur();
-			$('#queryword').val(words);
-
-			switch(classifyText(words)) {
-				case "paragraph":
-					handleParagraph(words);
-					break;
-				case "chinese":
-					handleChinese(words);
-					break;
-				default:
-					queryWord(words);
-					break;
-			}
-
-		} else {
-			$('#queryword').focus();
-		}
-		
-	});
-
 });
 
 $(window).unload(function() {
 });
+
+window.onload = function(){
+	document.getElementById('queryword').focus();
+};
 
 
 
